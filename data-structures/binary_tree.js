@@ -115,6 +115,30 @@ class binaryTree {
             result.push(node.data)
         }
     }
+
+    bfs(data) {
+        if (this.root == null) {
+            return false
+        }
+
+        let queue = []
+        queue.push([this.root])
+
+        while(queue.length > 0) {
+            let node = queue.shift()
+            console.log(node.data)
+            if (node.data == data) {
+                return true
+            }
+            if (node.left) {
+                queue.push(node.left)
+            }
+            if (node.right) {
+                queue.push(node.right)
+            }
+        }
+        return false
+    }
 }
 
 const tree = new binaryTree()
@@ -126,4 +150,4 @@ tree.insert(15)
 tree.insert(7)
 tree.insert(20)
 
-console.log(`dfs: ${tree.dfs(20)}.`)
+console.log(`bfs: ${tree.bfs(10)}.`)
