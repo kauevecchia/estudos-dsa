@@ -52,6 +52,28 @@ class binaryTree {
         }
     }
 
+    dfs(data) {
+        return this.dfs_recursive(this.root, data)
+    }
+
+    dfs_recursive(node, data) {
+        if (node) {
+            console.log(node.data)
+        }
+        if (node == null) {
+           return false 
+        }
+        if (node.data == data) {
+            return true
+        } 
+        if (this.dfs_recursive(node.left, data)) {
+            return true
+        }
+        if (this.dfs_recursive(node.right, data)) {
+            return true
+        }
+    }
+
     preorder_traversal() {
         let result = []
         this.preorder_recursive(this.root, result)
@@ -102,12 +124,6 @@ tree.insert(1)
 tree.insert(10)
 tree.insert(15)
 tree.insert(7)
+tree.insert(20)
 
-// preorder: [5, 3, 1, 10, 7, 15]
-// inorder: [1, 3, 5, 7, 10, 15]
-// postorder: [1, 3, 7, 15, 10, 5]
-
-
-console.log(`preorder_traversal: ${tree.preorder_traversal()}.`)
-console.log(`inorder_traversal: ${tree.inorder_traversal()}.`)
-console.log(`postorder_traversal: ${tree.postorder_traversal()}.`)
+console.log(`dfs: ${tree.dfs(20)}.`)
